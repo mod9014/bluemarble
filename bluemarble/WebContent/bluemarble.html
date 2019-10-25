@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+td {
+	width: 100px;
+	height: 100px;
+}
+</style>
+<script src="/bluemarble/script/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+
+	<p>
+		1p위치:<span></span>
+	</p>
+	<p>
+		2p위치:<span></span>
+	</p>
+	<p>
+		3p위치:<span></span>
+	</p>
+	<p>
+		4p위치:<span></span>
+	</p>
+	<div>
+		턴 토큰 : <span></span>p 차례
+	</div>
+	<div>
+		<button id="throwDice">주사위 굴리기</button>
+	</div>
+</body>
+<script>
+	$.post("bluemarble/", [][])
+	let player1 = {
+			money : 0;// 플레이어 자금
+			location : 0; //플레이어 위치
+			isLoans : false; //대출 여부
+			inventory : "none"; //사용할수있는 황금카드 소유여부 = 미보유 :(none)  우대권:(exemp), 무인도탈출(escape)
+		}
+	let player2 = {
+			money : 0;// 플레이어 자금
+		location : 0; //플레이어 위치
+		isLoans : false; //대출 여부
+		inventory : "none"; //사용할수있는 황금카드 소유여부 = 미보유 :(none)  우대권:(exemp), 무인도탈출(escape)
+	}
+	let player3 = {
+			money : 0;// 플레이어 자금
+		location : 0; //플레이어 위치
+		isLoans : false; //대출 여부
+		inventory : "none"; //사용할수있는 황금카드 소유여부 = 미보유 :(none)  우대권:(exemp), 무인도탈출(escape)
+	}
+	let player4 = {
+			money : 0;// 플레이어 자금
+		location : 0; //플레이어 위치
+		isLoans : false; //대출 여부
+		inventory : "none"; //사용할수있는 황금카드 소유여부 = 미보유 :(none)  우대권:(exemp), 무인도탈출(escape)
+	}
+
+	let movePlayer = function(location, diceNum){
+		
+		location+=diceNum;
+		if(location<=44){
+			location-=43;
+		}
+	}
+	$("#throwDice")
+	let map = [ //맵의 id 0~43 까지
+		
+	];
+	let mapState = [
+		
+	]
+	let lend = function(){ //땅의 정보
+		
+	}
+	
+	let showDisplay = function()=>{
+		$("#1p").html("")
+	}
+	
+</script>
+</html>

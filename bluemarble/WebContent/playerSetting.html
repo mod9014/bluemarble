@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+	<style type="text/css">
+		button{
+			width:400px;
+			height:200px;
+		}
+	</style>
+</head>
+<body >
+	<div align="center">
+		<h1>부루마불</h1>
+		<div>
+			<button id="2p">2인으로 게임하기</button>
+		</div>
+		<div>
+			<button id="3p">3인으로 게임하기</button>
+		</div>
+		<div>
+			<button id="4p">4인으로 게임하기</button>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+$.post(“./index.news.ajax.html”,
+        { “param1″:”값1″, “param2″:”값2″ },
+        function(data, textStatus){
+              $(“#news”).innerHTML = “”;
+              $(“#news”).append(data);
+        });
+	document.get
+</script>
+</html>
