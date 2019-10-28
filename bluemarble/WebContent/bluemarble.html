@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
 td {
@@ -9,77 +9,158 @@ td {
 	height: 100px;
 }
 </style>
-<script src="/bluemarble/script/jquery-3.4.1.min.js"></script>
+    <script src="/bluemarble/script/jquery-3.4.1.min.js"></script>
+    <script>
+        //ì´ˆê¸° ì„¤ì •
+        
+    </script>
 </head>
 <body>
-
-	<p>
-		1pÀ§Ä¡:<span></span>
+    <div>
+        1p <span id="1Pmoney"></span>ì›
+        2p <span id="2Pmoney"></span>ì›
+        3p <span id="3Pmoney"></span>ì›
+        4p <span id="4Pmoney"></span>ì›
+    </div>
+	<p>    
+		1pìœ„ì¹˜:<span id="1p"></span>
 	</p>
 	<p>
-		2pÀ§Ä¡:<span></span>
+		2pìœ„ì¹˜:<span id="2p"></span>
 	</p>
 	<p>
-		3pÀ§Ä¡:<span></span>
+		3pìœ„ì¹˜:<span id="3p"></span>
 	</p>
 	<p>
-		4pÀ§Ä¡:<span></span>
+		4pìœ„ì¹˜:<span id="4p"></span>
 	</p>
 	<div>
-		ÅÏ ÅäÅ« : <span></span>p Â÷·Ê
+		í„´ í† í° : <span id="turn"></span>p ì°¨ë¡€
 	</div>
+    <div>
+        ì£¼ì‚¬ìœ„ ê²°ê³¼ : <span></span>
+    </div>
 	<div>
-		<button id="throwDice">ÁÖ»çÀ§ ±¼¸®±â</button>
+		<button id="throwDice">ì£¼ì‚¬ìœ„ êµ´ë¦¬ê¸°</button>
 	</div>
 </body>
 <script>
-	$.post("bluemarble/", [][])
-	let player1 = {
-			money : 0;// ÇÃ·¹ÀÌ¾î ÀÚ±İ
-			location : 0; //ÇÃ·¹ÀÌ¾î À§Ä¡
-			isLoans : false; //´ëÃâ ¿©ºÎ
-			inventory : "none"; //»ç¿ëÇÒ¼öÀÖ´Â È²±İÄ«µå ¼ÒÀ¯¿©ºÎ = ¹Ìº¸À¯ :(none)  ¿ì´ë±Ç:(exemp), ¹«ÀÎµµÅ»Ãâ(escape)
+	var totalPlayer = 4;//ê²Œì„í•  í”Œë ˆì´ì–´ ìˆ˜
+	function Players(){
+        this.money = 2930000;// í”Œë ˆì´ì–´ ìê¸ˆ
+        this.location = 0; //í”Œë ˆì´ì–´ ìœ„ì¹˜
+        this.isLoans = false; //ëŒ€ì¶œ ì—¬ë¶€
+        this.muindo = 0;//ë¬´ì¸ë„ì¼ ê²½ìš° 
+        this.inventory = "none"; //ì‚¬ìš©í• ìˆ˜ìˆëŠ” í™©ê¸ˆì¹´ë“œ ì†Œìœ ì—¬ë¶€ = ë¯¸ë³´ìœ  :(none)  ìš°ëŒ€(exemp), ë¬´ì¸ë„íƒˆì¶œ(escape
+    };
+    /*
+    let player = {
+        1:{
+			money : 2930000,// í”Œë ˆì´ì–´ ìê¸ˆ
+			location : 0, //í”Œë ˆì´ì–´ ìœ„ì¹˜
+			isLoans : false, //ëŒ€ì¶œ ì—¬ë¶€
+			inventory : "none" //ì‚¬ìš©í• ìˆ˜ìˆëŠ” í™©ê¸ˆì¹´ë“œ ì†Œìœ ì—¬ë¶€ = ë¯¸ë³´ìœ  :(none)  ìš°ëŒ€(exemp), ë¬´ì¸ë„íƒˆì¶œ(escape)
+		},
+        2:{
+			money : 2930000,// í”Œë ˆì´ì–´ ìê¸ˆ
+			location : 0, //í”Œë ˆì´ì–´ ìœ„ì¹˜
+			isLoans : false, //ëŒ€ì¶œ ì—¬ë¶€
+			inventory : "none" //ì‚¬ìš©í• ìˆ˜ìˆëŠ” í™©ê¸ˆì¹´ë“œ ì†Œìœ ì—¬ë¶€ = ë¯¸ë³´ìœ  :(none)  ìš°ëŒ€(exemp), ë¬´ì¸ë„íƒˆì¶œ(escape)
+		},
+        3:{
+			money : 2930000,// í”Œë ˆì´ì–´ ìê¸ˆ
+			location : 0, //í”Œë ˆì´ì–´ ìœ„ì¹˜
+			isLoans : false, //ëŒ€ì¶œ ì—¬ë¶€
+			inventory : "none" //ì‚¬ìš©í• ìˆ˜ìˆëŠ” í™©ê¸ˆì¹´ë“œ ì†Œìœ ì—¬ë¶€ = ë¯¸ë³´ìœ  :(none)  ìš°ëŒ€(exemp), ë¬´ì¸ë„íƒˆì¶œ(escape)
+		},
+        4:{
+			money : 2930000,// í”Œë ˆì´ì–´ ìê¸ˆ
+			location : 0, //í”Œë ˆì´ì–´ ìœ„ì¹˜
+			isLoans : false, //ëŒ€ì¶œ ì—¬ë¶€
+			inventory : "none" //ì‚¬ìš©í• ìˆ˜ìˆëŠ” í™©ê¸ˆì¹´ë“œ ì†Œìœ ì—¬ë¶€ = ë¯¸ë³´ìœ  :(none)  ìš°ëŒ€(exemp), ë¬´ì¸ë„íƒˆì¶œ(escape)
 		}
-	let player2 = {
-			money : 0;// ÇÃ·¹ÀÌ¾î ÀÚ±İ
-		location : 0; //ÇÃ·¹ÀÌ¾î À§Ä¡
-		isLoans : false; //´ëÃâ ¿©ºÎ
-		inventory : "none"; //»ç¿ëÇÒ¼öÀÖ´Â È²±İÄ«µå ¼ÒÀ¯¿©ºÎ = ¹Ìº¸À¯ :(none)  ¿ì´ë±Ç:(exemp), ¹«ÀÎµµÅ»Ãâ(escape)
-	}
-	let player3 = {
-			money : 0;// ÇÃ·¹ÀÌ¾î ÀÚ±İ
-		location : 0; //ÇÃ·¹ÀÌ¾î À§Ä¡
-		isLoans : false; //´ëÃâ ¿©ºÎ
-		inventory : "none"; //»ç¿ëÇÒ¼öÀÖ´Â È²±İÄ«µå ¼ÒÀ¯¿©ºÎ = ¹Ìº¸À¯ :(none)  ¿ì´ë±Ç:(exemp), ¹«ÀÎµµÅ»Ãâ(escape)
-	}
-	let player4 = {
-			money : 0;// ÇÃ·¹ÀÌ¾î ÀÚ±İ
-		location : 0; //ÇÃ·¹ÀÌ¾î À§Ä¡
-		isLoans : false; //´ëÃâ ¿©ºÎ
-		inventory : "none"; //»ç¿ëÇÒ¼öÀÖ´Â È²±İÄ«µå ¼ÒÀ¯¿©ºÎ = ¹Ìº¸À¯ :(none)  ¿ì´ë±Ç:(exemp), ¹«ÀÎµµÅ»Ãâ(escape)
-	}
-
-	let movePlayer = function(location, diceNum){
+        for(i=1;i<=4;i++){
+             :{
+			money : 2930000,// í”Œë ˆì´ì–´ ìê¸ˆ
+			location : 0, //í”Œë ˆì´ì–´ ìœ„ì¹˜
+			isLoans : false, //ëŒ€ì¶œ ì—¬ë¶€
+			inventory : "none" //ì‚¬ìš©í• ìˆ˜ìˆëŠ” í™©ê¸ˆì¹´ë“œ ì†Œìœ ì—¬ë¶€ = ë¯¸ë³´ìœ  :(none)  ìš°ëŒ€(exemp), ë¬´ì¸ë„íƒˆì¶œ(escape)
+		    },
+        }
+    };
+    */
+	
+    var player = new Array();
+    for(i=1 ; i<=totalPlayer ; i++){//í”Œë ˆì´ì–´ ê°ì²´ìƒì„±
+        player[i] = new Players();
+    }
+    
+	let movePlayer = function(token, diceNum){//í”Œë ˆì´ì–´ ì´ë™ì„ ìœ„í•œí•¨ìˆ˜
+        let moveCoord = player[token].location;
+		if(player[token].muindo==0){
+            moveCoord+=diceNum;
+            if(moveCoord>=44){
+			    moveCoord-=43;
+		    }
+        }
 		
-		location+=diceNum;
-		if(location<=44){
-			location-=43;
-		}
-	}
-	$("#throwDice")
-	let map = [ //¸ÊÀÇ id 0~43 ±îÁö
-		
+        player[token].location = moveCoord;
+	};
+	
+    var playerToken = 1;//í„´ í™•ì¸
+    var changeTurn = function(isNext){//í„´ë³€ê²½í•´ì¤€ë‹¤
+        if(isNext){
+            playerToken++;
+        }
+        if(playerToken>totalPlayer){
+            playerToken-=totalPlayer;
+        }
+    };
+	let map = [ 
+		//ê° ì¹¸ì— ì‹¤í–‰ë  í•¨ìˆ˜ ì´ë¦„ ì €ì¥
+        //ì¹¸ ì´ë™í›„ í•´ë‹¹
 	];
-	let mapState = [
-		
-	]
-	let lend = function(){ //¶¥ÀÇ Á¤º¸
-		
-	}
+	var addMoney = function(token, money){//ëˆ ì¶”ê°€ í•¨ìˆ˜
+        player[token].money+=money;
+    }
+    
+    var subMoney = function(token, money){//ëˆ ì†Œë¹„ í•¨ìˆ˜
+        player[token].money+=money;
+    }
+    /*
+    ë•… ì†Œìœ ì
+    ë•… ê°€ê²©
+    ê° ê±´ë¬¼ê°€ê²©
+    ê±´ë¬¼ ì—¬ë¶€
+    */
 	
-	let showDisplay = function()=>{
-		$("#1p").html("")
-	}
-	
+    //ë³µì§€ê¸°ê¸ˆ
+    
+	let showDisplay = function(){//í‘œì‹œê°±ì‹ 
+		$("#1p").html(player[1].location);//ê° í”Œë ˆì´ì–´ ìœ„ì¹˜ í‘œì‹œ
+        $("#2p").html(player[2].location);
+        $("#3p").html(player[3].location);
+        $("#4p").html(player[4].location);
+        
+		$("#1Pmoney").html(player[1].money);//ê° í”Œë ˆì´ì–´ ëˆ í‘œì‹œ
+        $("#2Pmoney").html(player[2].money);
+        $("#3Pmoney").html(player[3].money);
+        $("#4Pmoney").html(player[4].money);
+        
+        $("#turn").html(playerToken);//ì°¨ë¡€í‘œì‹œ
+        
+        //ë³µì§€ê¸°ê¸ˆ í‘œì‹œ
+        
+	};
+    
+	$(document).ready(function(){
+        showDisplay();
+        $("#throwDice").click(function(){
+            movePlayer(playerToken, 3);
+            //map[player1.location];
+            showDisplay();
+            changeTurn(true);
+        }); 
+    });
 </script>
 </html>
