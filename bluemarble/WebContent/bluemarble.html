@@ -8,6 +8,53 @@ td {
 	width: 100px;
 	height: 100px;
 }
+
+</style>
+<style>
+.board_up_down{
+	border: 1px solid #ffffff;
+	height: 135px;
+	width: 75px;
+	margin-top: 12px;
+	border-collapse: collapse;
+}
+.marble_board {
+	background-image: url("./board/b1.jpg");
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-size: 100%;
+}
+.board_end_up_left{
+	border: 1px solid #ffffff;
+	height: 135px;
+	width: 135px;
+	margin-left: 26px;
+	margin-top: 12px;
+	border-collapse: collapse;
+}
+.board_end_up_right{
+	border: 1px solid #ffffff;
+	height: 135px;
+	width: 131px;
+	margin-top: 12px;
+	border-collapse: collapse;
+}
+.board_none{
+	width: 0px;
+}
+.board_left{
+	border: 1px solid #ffffff;
+	width: 135px;
+	height: 75px;
+	margin-left: 26px;
+	border-collapse: collapse;
+}
+.board_right{
+	border: 1px solid #ffffff;
+	width: 135px;
+	height: 75px;
+	border-collapse: collapse;
+}
 </style>
     <script src="/bluemarble/script/jquery-3.4.1.min.js"></script>
     <script>
@@ -16,6 +63,7 @@ td {
     </script>
 </head>
 <body>
+
     <div>
         1p <span id="1Pmoney"></span>원
         2p <span id="2Pmoney"></span>원
@@ -46,13 +94,17 @@ td {
 </body>
 <script>
 	var totalPlayer = 4;//게임할 플레이어 수
+    var playerToken = 1;//턴 확인
+    var 
 	function Players(){
         this.money = 2930000;// 플레이어 자금
         this.location = 0; //플레이어 위치
         this.isLoans = false; //대출 여부
+        this.LoansValues = 0; //대출금(rush&cash)
         this.muindo = 0;//무인도일 경우 
         this.inventory = "none"; //사용할수있는 황금카드 소유여부 = 미보유 :(none)  우대(exemp), 무인도탈출(escape
-    };
+    	
+	};
     /*
     let player = {
         1:{
@@ -107,7 +159,6 @@ td {
         player[token].location = moveCoord;
 	};
 	
-    var playerToken = 1;//턴 확인
     var changeTurn = function(isNext){//턴변경해준다
         if(isNext){
             playerToken++;
@@ -124,17 +175,44 @@ td {
         player[token].money+=money;
     }
     
-    var subMoney = function(token, money){//돈 소비 함수
+    var subMoney = function(token, money){//돈 소비 함수 token:playerToken money
         player[token].money+=money;
     }
     /*
-    땅 소유자
-    땅 가격
-    각 건물가격
-    건물 여부
+	    땅 소유자
+	    땅 가격
+	    각 건물가격
+	    건물 여부
     */
-	
+	function Taipei(){
+    	const TAIPEI = 50000; //땅 가격
+    	const HOTEL = 250000; //땅의 호텔 가격
+    	const BUILDING = 150000; //땅의 빌딩 가격
+    	const VILLA1 = 50000; //땅의 빌라 가격
+    	const VILLA2 = 50000; //땅의 빌라 가격
+    	//let owner = 0; //소유한 플레이어 외부정의 해야함
+    	let fee = 4000; //통행료
+    	let isHotel = false;
+    	let isBuliding = false;
+    	let isVilla1 = false;
+    	let isVilla2 = false;
+    	if(isHotel || isBuliding || isVilla1 || isVilla2)
+    		fee=0;
+    	if(isHotel)
+    		fee+=HOTEL;
+    	if(isBuliding)
+    		fee+=BUILDING;
+    	if(isVilla1)
+    		fee+=VILLA1;
+    	if(isVilla2)
+    		fee+=VILLA2;
+    	return fee;
+    	//addMoney(fee);
+    	//subMoney(fee);
+    }
     //복지기금
+    
+    //황금카드 함수 30개
     
 	let showDisplay = function(){//표시갱신
 		$("#1p").html(player[1].location);//각 플레이어 위치 표시
@@ -150,7 +228,6 @@ td {
         $("#turn").html(playerToken);//차례표시
         
         //복지기금 표시
-        
 	};
     
 	$(document).ready(function(){
