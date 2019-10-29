@@ -3,13 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-td {
-	width: 100px;
-	height: 100px;
-}
 
-</style>
 <style>
 .board_up_down{
 	border: 1px solid #ffffff;
@@ -95,7 +89,7 @@ td {
 <script>
 	var totalPlayer = 4;//게임할 플레이어 수
     var playerToken = 1;//턴 확인
-    var 
+    var Welfare = 0// 복지기금
 	function Players(){
         this.money = 2930000;// 플레이어 자금
         this.location = 0; //플레이어 위치
@@ -210,8 +204,7 @@ td {
     	//addMoney(fee);
     	//subMoney(fee);
     }
-    //복지기금
-    
+  
     //황금카드 함수 30개
     
 	let showDisplay = function(){//표시갱신
