@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Blue Marble</title>
+<meta charset="UTF-8">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- jQuery library -->
+<style>
+.marble_board {
+   /* //background-image: url("./images/board.jpg"); */
+   background-repeat: no-repeat;
+   background-position: center top;
+   background-size: 100%;
+   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+}
+.no_border {
+   border: 0 !important;
+}
+.board_floor {
+   background: lightblue;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+   <div class="boaard_floor">
+
+      <div class="container" align="center">
+
+         <h5>
+			이동 지점 : <input id="point" type="text" />
+         </h5>
+		<div>
+	        1p <span id="1Pmoney"></span>원
+	        2p <span id="2Pmoney"></span>원
+	        3p <span id="3Pmoney"></span>원
+	        4p <span id="4Pmoney"></span>원
+	    </div>
+		<p>    
+			1p위치:<span id="1p"></span>
+		</p>
+		<p>
+			2p위치:<span id="2p"></span>
+		</p>
+		<p>
+			3p위치:<span id="3p"></span>
+		</p>
+		<p>
+			4p위치:<span id="4p"></span>
+		</p>
+		<div>
+			턴 토큰 : <span id="turn"></span>p 차례
+		</div>
+	    <div>
+        	주사위 결과 : <span id = "dice"></span>
+	    </div>
+		<div>
+			<button id="throwDice">주사위 굴리기</button>
+		</div>
+	
+	
+         <div class="marble_board" align="center">
+            <div
+               style="padding-left: 14px; padding-right: 18px; padding-top: 14px">
+               <table class="table table-bordered">
+                  <tr height="158px">
+                     <td width="14%">
+                        21<span id="b21"></span>
+                     </td>
+                     <td width="7.8%">
+                        22<span id="b22"></span>
+                     </td>
+                     <td width="7.8%">
+                        23<span id="b23"></span>
+                     </td>
+                     <td width="7.8%">
+                        24<span id="b24"></span>
+                     </td>
+                     <td width="7.5%">
+                        25<span id="b25"></span>
+                     </td>
+                     <td width="8%">
+                        26<span id="b26"></span>
+                     </td>
+                     <td width="7.5%">
+                        27<span id="b27"></span>
+                     </td>
+                     <td width="7.7%">
+                        28<span id="b28"></span>
+                     </td>
+                     <td width="7.9%">
+                        29<span id="b29"></span>
+                     </td>
+                     <td width="7.7%">
+                        30<span id="b30"></span>
+                     </td>
+                     <td width="14%">
+                        31<span id="b31"></span>
+                     </td>
+                  </tr>
+                  <tr height="88px">
+                     <td>
+                        20<span id="b20"></span>
+                     </td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td>
+                        32<span id="b32"></span>
+                     </td>
+                  </tr>
+                  <tr height="88px">
+                     <td>
+                        19<span id="b19"></span>
+                     </td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td>
+                        33<span id="b33"></span>
+                     </td>
+                  </tr>
+                  <tr height="88px">
+                     <td>
+                        18<span id="b18"></span>
+                     </td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td>
+                        34<span id="b34"></span>
+                     </td>
+                  </tr>
+                  <tr height="88px">
+                     <td>
+                        17<span id="b17"></span>
+                     </td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class=" board_up_down">35<span id="b35"></span>
+                     </td>
+                  </tr>
+                  <tr height="88px">
+                     <td>
+                        16<span id="b16"></span>
+                     </td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"><span id=diceOne></span></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class=" board_up_down">36<span id="b36"></span>
+                     </td>
+                  </tr>
+                  <tr height="88px">
+                     <td>
+                        15<span id="b15"></span>
+                     </td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"><span id=diceTwo></span></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class=" board_up_down">37<span id="b37"></span>
+                     </td>
+                  </tr>
+                  <tr height="88px">
+                     <td>
+                        14<span id="b14"></span>
+                     </td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class=" board_up_down">38<span id="b38"></span>
+                     </td>
+                  </tr>
+                  <tr height="88px">
+                     <td>
+                        13<span id="b13"></span>
+                     </td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class=" board_up_down">39<span id="b39"></span>
+                     </td>
+                  </tr>
+                  <tr height="88px">
+                     <td>
+                        12<span id="b12"></span>
+                     </td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class=" board_up_down">40<span id="b40"></span>
+                     </td>
+                  </tr>
+                  <tr height="158px">
+                     <td width="14%">
+                        11<span id="b11"></span>
+                     </td>
+                     <td width="7.8%">
+                        10<span id="b10"></span>
+                     </td>
+                     <td width="7.8%">
+                        9<span id="b9"></span>
+                     </td>
+                     <td width="7.8%">
+                        8<span id="b8"></span>
+                     </td>
+                     <td width="7.5%">
+                        7<span id="b7"></span>
+                     </td>
+                     <td width="8%">
+                        6<span id="b6"></span>
+                     </td>
+                     <td width="7.5%">
+                        5<span id="b5"></span>
+                     </td>
+                     <td width="7.7%">
+                        4<span id="b4"></span>
+                     </td>
+                     <td width="7.9%">
+                        3<span id="b3"></span>
+                     </td>
+                     <td width="7.7%">
+                        2<span id="b2"></span>
+                     </td>
+                     <td width="14%">
+                        1<span id="b1"></span>
+                        
+                     </td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+      </div>
+   </div>
+</body>
+<script type="text/javascript">
+	var totalPlayer = 4;//게임할 플레이어 수
+	var playerToken = 1;//턴 확인
+	var Welfare = 0// 복지기금
+	function Players(){
+	    this.money = 2930000;// 플레이어 자금
+	    this.location = 0; //플레이어 위치
+	    this.isLoans = false; //대출 여부
+	    this.LoansValues = 0; //대출금(rush&cash)
+	    this.muindo = 0;//무인도일 경우 
+	    this.inventory = "none"; //사용할수있는 황금카드 소유여부 = 미보유 :(none)  우대(exemp), 무인도탈출(escape
+		
+	};
+	
+	var player = new Array();
+	for(i=1 ; i<=totalPlayer ; i++){//플레이어 객체생성
+	    player[i] = new Players();
+	}
+	
+	let movePlayer = function(token, diceNum){//플레이어 이동을 위한함수
+        let moveCoord = player[token].location;
+		if(player[token].muindo==0){
+            moveCoord+=diceNum;
+            if(moveCoord>40){
+			    moveCoord-=40;
+		    }
+        }
+		
+        player[token].location = moveCoord;
+	};
+	
+	var changeTurn = function(isNext){//턴변경해준다
+	    if(isNext){
+	        playerToken++;
+	    }
+	    if(playerToken>totalPlayer){
+	        playerToken-=totalPlayer;
+	    }
+	};
+	let map = [ 
+		//각 칸에 실행될 함수 이름 저장
+	    //칸 이동후 해당
+	];
+	var addMoney = function(token, money){//돈 추가 함수
+	    player[token].money+=money;
+	}
+	
+	var subMoney = function(token, money){//돈 소비 함수 token:playerToken money
+	    player[token].money+=money;
+	}
+	/*
+	    땅 소유자
+	    땅 가격
+	    각 건물가격
+	    건물 여부
+	*/
+	
+	
+	//황금카드 함수 30개
+	let goldKey = {
+		"1":function(){//병원비 지급 : 벌금 50000원
+				let imageId = 1;
+				subMoney(playerToken, 50000)
+				
+			},
+		"2":function(){
+			
+		},
+		//.....
+		"30": function(){
+			
+		}
+	}
+	
+	//카드 섞는다
+	let goldKeyList = [1,2,3,4,5,,,,30];
+	function drowKey(){// 카드 뽑을때
+		var cardIndex = 0;
+		goldKey[goldKeyList[cardIndex]];
+		cardIndex++;
+	}
+	let showDisplay = function(){//표시갱신
+		$("#1p").html(player[1].location);//각 플레이어 위치 표시
+	    $("#2p").html(player[2].location);
+	    $("#3p").html(player[3].location);
+	    $("#4p").html(player[4].location);
+	    
+		$("#1Pmoney").html(player[1].money);//각 플레이어 돈 표시
+	    $("#2Pmoney").html(player[2].money);
+	    $("#3Pmoney").html(player[3].money);
+	    $("#4Pmoney").html(player[4].money);
+	    
+	    $("#turn").html(playerToken);//차례표시
+	    
+	    //복지기금 표시
+	};
+	
+	$(document).ready(function(){
+	    $("#throwDice").click(function() {
+
+			$("#startDice").hide();
+		    
+			let diceOne = 0;
+			let diceTwo = 0;
+			let diceNum = 0; // 주사위 두개 던져서 두개 합
+			
+			
+			diceOne =  Math.floor( (Math.random() * 6) + 1 );
+			diceTwo =  Math.floor( (Math.random() * 6) + 1 );
+			diceNum = Number(diceOne) + Number(diceTwo);
+			
+			$("#diceOne").html(diceOne);
+			$("#diceTwo").html(diceTwo);
+			
+			let beforeId = "#b" + player[playerToken].location;
+		    $(beforeId).innerHTML = "";
+			
+		    
+		    movePlayer(playerToken, diceNum);// 말을 이동시킵니다.
+		   
+		    let afterId = "#b" + player[playerToken].location;
+		    $(afterId).innerHTML = '<button class="btn-danger">♠</button>';
+
+		    
+		    changeTurn(!(diceOne==diceTwo));//더블이 아닐때 턴넘김
+		    
+		    $("#dice").text(diceNum);
+		    $("#point").val = player[playerToken].location;
+		    showDisplay();
+		});
+	});
+	
+</script>
+</html>
