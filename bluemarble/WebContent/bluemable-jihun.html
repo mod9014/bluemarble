@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Blue Marble</title>
+<meta charset="UTF-8">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- jQuery library -->
+<style>
+.marble_board {
+   background-image: url("./images/board4.jpg");
+   background-repeat: no-repeat;
+   background-position: center top;
+   background-size: 100%;
+   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+}
+.no_border {
+   border: none !important;
+   
+}
+.td_width {
+	width: 90px;
+}
+.board_floor {
+   background: lightblue;
+}
+.board_edge {
+	width: 140px;
+	height: 145px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+   <div class="boaard_floor">
+
+      <div class="container" align="center">
+
+         <h5>
+			이동 지점 : <input id="point" type="text" />
+         </h5>
+		<div>
+	        1p <span id="1Pmoney"></span>원
+	        2p <span id="2Pmoney"></span>원
+	        3p <span id="3Pmoney"></span>원
+	        4p <span id="4Pmoney"></span>원
+	    </div>
+		<p>    
+			1p위치:<span id="1p"></span>
+		</p>
+		<p>
+			2p위치:<span id="2p"></span>
+		</p>
+		<p>
+			3p위치:<span id="3p"></span>
+		</p>
+		<p>
+			4p위치:<span id="4p"></span>
+		</p>
+		<div>
+			턴 토큰 : <span id="turn"></span>p 차례
+		</div>
+	    <div>
+        	주사위 결과 : <span id = "dice"></span>
+	    </div>
+		<div>
+			<button id="throwDice">주사위 굴리기</button>
+		</div>
+	
+	
+         <div class="marble_board" align="center">
+            <div
+               style="padding-left: 14px; padding-right: 18px; padding-top: 14px; height: 1145px">
+               <table class="table">
+                  <tr height="148px">
+                     <td class = "no_border board_edge">
+                     	<div class = owner>0</div>
+                        21<span id="b21"></span>
+                     </td>
+                     <td class = "no_border td_width">
+                     <div class = owner>0</div>
+                        22<span id="b22"></span>
+                     </td>
+                     <td class = "no_border td_width">
+                     <div class = owner>0</div>
+                        23<span id="b23"></span>
+                     </td>
+                     <td class = "no_border td_width">
+                     <div class = owner>0</div>
+                        24<span id="b24"></span>
+                     </td>
+                     <td class = "no_border td_width">
+                     <div class = owner>0</div>
+                        25<span id="b25"></span>
+                     </td>
+                     <td class = "no_border td_width">
+                     <div class = owner>0</div>
+                        26<span id="b26"></span>
+                     </td>
+                     <td class = "no_border td_width">
+                     <div class = owner>0</div>
+                        27<span id="b27"></span>
+                     </td>
+                     <td class = "no_border td_width">
+                     <div class = owner>0</div>
+                        28<span id="b28"></span>
+                     </td>
+                     <td class = "no_border td_width">
+                     <div class = owner>0</div>
+                        29<span id="b29"></span>
+                     </td>
+                     <td class = "no_border td_width">
+                     <div class = owner>0</div>
+                        30<span id="b30"></span>
+                     </td>
+                     <td class = "no_border board_edge">
+                     <div class = owner>0</div>
+                        31<span id="b31"></span>
+                     </td>
+                  </tr>
+                  <tr height="91px">
+                     <td class = "no_border">
+                     <div class = owner>0</div>
+                        20<span id="b20"></span>
+                     </td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class = "no_border">
+                     <div class = owner>0</div>
+                        32<span id="b32"></span>
+                     </td>
+                  </tr>
+                  <tr height="90px">
+                     <td class = "no_border">
+                     <div class = owner>0</div>
+                        19<span id="b19"></span>
+                     </td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class = "no_border">
+                     <div class = owner>0</div>
+                        33<span id="b33"></span>
+                     </td>
+                  </tr>
+                  <tr height="90px">
+                     <td class = "no_border">
+                     <div class = owner>0</div>
+                        18<span id="b18"></span>
+                     </td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class = "no_border">
+                     <div class = owner>0</div>
+                        34<span id="b34"></span>
+                     </td>
+                  </tr>
+                  <tr height="90px">
+                     <td class = "no_border">
+                     <div class = owner>0</div>
+                        17<span id="b17"></span>
+                     </td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class = "no_border">
+                     <div class = owner>0</div>
+                     35<span id="b35"></span>
+                     </td>
+                  </tr>
+                  <tr height="90px">
+                     <td class = "no_border">
+                     <div class = owner>0</div>
+                        16<span id="b16"></span>
+                     </td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class = "no_border">
+                     <div class = owner>0</div>
+                     36<span id="b36"></span>
+                     </td>
+                  </tr>
+                  <tr height="90px">
+                     <td class = "no_border">
+                     <div class = owner>0</div>
+                        15<span id="b15"></span>
+                     </td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class = "no_border">
+                     <div class = owner>0</div>
+                     37<span id="b37"></span>
+                     </td>
+                  </tr>
+                  <tr height="90px">
+                     <td class = "no_border">
+                     <div class = owner>0</div>
+                        14<span id="b14"></span>
+                     </td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class = "no_border">
+                     <div class = owner>0</div>
+                     38<span id="b38"></span>
+                     </td>
+                  </tr>
+                  <tr height="90px">
+                     <td class = "no_border">
+                     <div class = owner>0</div>
+                        13<span id="b13"></span>
+                     </td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class = "no_border">
+                     <div class = owner>0</div>
+                     39<span id="b39"></span>
+                     </td>
+                  </tr>
+                  <tr height="90px">
+                     <td class = "no_border">
+                     <div class = owner>0</div>
+                        12<span id="b12"></span>
+                     </td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class="no_border"></td>
+                     <td class = "no_border">
+                     <div class = owner>0</div>
+                     40<span id="b40"></span>
+                     </td>
+                  </tr>
+                  <tr height="148px">
+                     <td class = "no_border board_edge">
+                     <div class = owner>0</div>
+                        11<span id="b11"></span>
+                     </td>
+                     <td width="89px" class = "no_border">
+                     <div class = owner>0</div>
+                        10<span id="b10"></span>
+                     </td>
+                     <td width="89px" class = "no_border">
+                     <div class = owner>0</div>
+                        9<span id="b9"></span>
+                     </td>
+                     <td width="89px" class = "no_border">
+                     <div class = owner>0</div>
+                        8<span id="b8"></span>
+                     </td>
+                     <td width="89px" class = "no_border">
+                     <div class = owner>0</div>
+                        7<span id="b7"></span>
+                     </td>
+                     <td width="89px" class = "no_border">
+                     <div class = owner>0</div>
+                        6<span id="b6"></span>
+                     </td>
+                     <td width="89px" class = "no_border">
+                     <div class = owner>0</div>
+                        5<span id="b5"></span>
+                     </td>
+                     <td width="89px" class = "no_border">
+                     <div class = owner>0</div>
+                        4<span id="b4"></span>
+                     </td>
+                     <td width="89px" class = "no_border">
+                     <div class = owner>0</div>
+                        3<span id="b3"></span>
+                     </td>
+                     <td width="89px" class = "no_border">
+                     <div class = owner>0</div>
+                        2<span id="b2"></span>
+                     </td>
+                     <td class = "no_border board_edge">
+                     <div class = owner>0</div>
+                        1<span id="b1" ></span>
+                        <span id="b1">   
+							<button class="btn-danger" id ="player1">aa</button>
+							<button class="btn-primary" id ="player2">bb</button>
+							<button class="btn-secondary" id ="player3">cc</button>
+							<button class="btn-warning" id ="player4">dd</button>   
+						</span>
+                     </td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+      </div>
+   </div>
+</body>
+
+<script>
+	
+	var totalPlayer = 4; // 게임할 플레이어 수
+    var playerToken = 1; // 턴 확인
+    var Welfare = 0 // 복지기금
+    
+	function Players() {
+        this.money = 2930000; // 플레이어 자금
+        this.location = 1; // 플레이어 위치
+        this.isLoans = false; // 대출 여부
+        this.LoansValues = 0; // 대출금(rush&cash)
+        this.muindo = 0; // 무인도일 경우 
+        this.inventory = "none"; // 사용할수있는 황금카드 소유여부 = 미보유 :(none)  우대(exemp), 무인도탈출(escape)
+    	
+	};
+	
+    /*
+    let player = {
+        1:{
+			money : 2930000,// 플레이어 자금
+			location : 0, //플레이어 위치
+			isLoans : false, //대출 여부
+			inventory : "none" //사용할수있는 황금카드 소유여부 = 미보유 :(none)  우대(exemp), 무인도탈출(escape)
+		},
+        2:{
+			money : 2930000,// 플레이어 자금
+			location : 0, //플레이어 위치
+			isLoans : false, //대출 여부
+			inventory : "none" //사용할수있는 황금카드 소유여부 = 미보유 :(none)  우대(exemp), 무인도탈출(escape)
+		},
+        3:{
+			money : 2930000,// 플레이어 자금
+			location : 0, //플레이어 위치
+			isLoans : false, //대출 여부
+			inventory : "none" //사용할수있는 황금카드 소유여부 = 미보유 :(none)  우대(exemp), 무인도탈출(escape)
+		},
+        4:{
+			money : 2930000,// 플레이어 자금
+			location : 0, //플레이어 위치
+			isLoans : false, //대출 여부
+			inventory : "none" //사용할수있는 황금카드 소유여부 = 미보유 :(none)  우대(exemp), 무인도탈출(escape)
+		}
+        for(i=1;i<=4;i++){
+             :{
+			money : 2930000,// 플레이어 자금
+			location : 0, //플레이어 위치
+			isLoans : false, //대출 여부
+			inventory : "none" //사용할수있는 황금카드 소유여부 = 미보유 :(none)  우대(exemp), 무인도탈출(escape)
+		    },
+        }
+    };
+    */
+	
+    var player = new Array();
+    for(i=1; i<=totalPlayer; i++){ //플레이어 객체생성
+        player[i] = new Players();
+    }
+    
+	let movePlayer = function(token, diceNum){ //플레이어 이동을 위한함수
+        let moveCoord = player[token].location;
+		if(player[token].muindo==0){
+            moveCoord += diceNum;
+            if(moveCoord>40){
+			    moveCoord-=40;
+		    }
+        }
+        player[token].location = moveCoord;
+	};
+	
+	// 땅 이동시 이벤트
+	var landEvent = function() {
+		// 땅에 도착했을 시 땅 주인 검사
+		alert("test!")
+		
+	}
+	
+	
+    var changeTurn = function(isNext){//턴변경해준다
+        if(isNext){
+            playerToken++;
+        }
+        if(playerToken>totalPlayer) {
+            playerToken-=totalPlayer;
+        }
+    };
+	let map = [ 
+		//각 칸에 실행될 함수 이름 저장
+        //칸 이동후 해당
+	];
+	var addMoney = function(token, money){//돈 추가 함수
+        player[token].money+=money;
+    }
+    
+    var subMoney = function(token, money){//돈 소비 함수 token:playerToken money
+        player[token].money+=money;
+    }
+    
+    /*
+	    땅 소유자
+	    땅 가격
+	    각 건물가격
+	    건물 여부
+    */
+    
+	function Taipei() {
+    	const TAIPEI = 50000; //땅 가격
+    	const HOTEL = 250000; //땅의 호텔 가격
+    	const BUILDING = 150000; //땅의 빌딩 가격
+    	const VILLA1 = 50000; //땅의 빌라 가격
+    	const VILLA2 = 50000; //땅의 빌라 가격
+    	//let owner = 0; //소유한 플레이어 외부정의 해야함
+    	let fee = 4000; //통행료
+    	let isHotel = false;
+    	let isBuliding = false;
+    	let isVilla1 = false;
+    	let isVilla2 = false;
+    	if(isHotel || isBuliding || isVilla1 || isVilla2)
+    		fee=0;
+    	if(isHotel)
+    		fee+=HOTEL;
+    	if(isBuliding)
+    		fee+=BUILDING;
+    	if(isVilla1)
+    		fee+=VILLA1;
+    	if(isVilla2)
+    		fee+=VILLA2;
+    	return fee;
+    	//addMoney((소유자), fee);
+    	//subMoney(totalPlayer, fee);
+    }
+  
+    //황금카드 함수 30개
+    let goldKey = {
+   		1 : function(playerToken) {
+   			//병원비 지급 : 벌금 50000원
+   			let imageId = 1;
+   			subMoney(playerToken, 50000);
+   			
+   		},
+    	2 : function(playerToken) {
+    		// 복권당첨 
+    		// 20만원 받습니다.
+    		addMoney(playerToken, 200000);
+    	},
+    	3 : function(playerToken) {
+    		// 특수 무전기
+    		// A) 무인도에 갇혀 있을떄 사용 할 수 있습니다.
+    		// B) 1회 사용 후 반납
+    		// C) 타인에게 팔 수 있습니다 (20만원)
+    		player[playerToken].inventory = "escape"
+    	},
+    	4 : function(playerToken) {
+    		// 무인도로 갑니다
+    		player[playerToken].location = 11;
+    	},
+    	// 5번 장기자랑 
+    	6 : function(playerToken) {
+    		// 제주로 이동 시작지점 통과시 월급 부여
+    		// 제주가 남에 땅이면 돈 지불
+    		if(player[playerToken].location = 3) {
+    			player[playerToken].location = 6;
+    			// 남 땅일 경우 돈 지불 
+    		} else {
+    			addMoney(playerToken, 200000);
+    			player[playerToken].location = 6;
+    			// 남 땅일 경우 돈 지불
+    		}
+    	},
+    	7 : function(playerToken) {
+    		// 은행에 5만원을 납부합니다.
+    		subMoney(playerToken, 50000);
+    	},
+    	8 : function(playerToken) {
+    		// 해외유학
+    		// 등록금 10만원을 은행에 납부합니다.
+    		subMoney(playerToken, 100000);
+    	},
+    	9 : function(playerToken) {
+    		// 노후연금을 받으세요 (5만원)
+    		addMoney(playerToken, 50000);
+    	},
+    	10 : function(playerToken) {
+    		// 뒤로 3칸
+    		if(player[playerToken].location == 3) {
+    			player[playerToken].location = 40;
+    		} else {
+    			movePlayer(playerToken, -3);
+    		}
+    		
+    	},
+    	11 : function(playerToken) {
+    		// 출발지로 돌아가고, 월급을 받습니다.
+    		player[token].location = 1;
+    		addMoney(playerToken, 200000); // 월급
+    	},
+    	12 : function(playerToken) {
+    		// 우승 
+    		// 자동차 경주에서 챔피언이 되었습니다(상금 : 100000)
+    		addMoney(playerToken, 100000);
+    	},
+    	13 : function(playerToken) {
+    		// 우대권 (1회 사용 후 소멸)
+    		player[playerToken].inventory = "exemp";
+    	},
+    	14 : function(playerToken) {
+			//상대방이 여객기를 가지고있을경우
+			if(/*상대방이 콩코드 여객기를 가지고 있을경우*/false) {
+				//내돈 - 300000
+				subMoney(playerToken, 300000);
+				    
+				//여객기를 가지고있는 상대의토큰 = ????
+				//콩코드여객기를 가지고있는 상대의돈 +300000
+    	      	addMoney(상대토큰번호, 300000);
+				}
+			addMoney(playerToken, 200000); // 월급
+			player[playerToken].location = 2; // 타이베이로 이동
+			if(/*타이베이가 다른사람 땅일 경우*/false) {
+				// 땅 값 판매
+				subMoney(playerToken, 300000);
+			}
+		},
+		15 : function(playerToken) {
+			// 건물 수리비
+			// 건물별 수리비 납부
+			// subMoney(playerToken, 호텔갯수*100000);
+			// subMoney(playerToken, 빌딩갯수*60000);
+			// subMoney(playerToken, 별장갯수*30000);
+		},
+		16 : function(playerToken) {
+			// 방범비
+			// 건물별 방범비 납부
+			// subMoney(playerToken, 호텔갯수*50000);
+			// subMoney(playerToken, 빌딩갯수*30000);
+			// subMoney(playerToken, 별장갯수*10000);
+		},
+		17 : function(playerToken) {
+			// 퀸 엘리자베스호를 타고 '베이징'으로 가세요
+			player[playerToken].location = 3;
+			// 퀸 엘리자베스호를 상대방이 가지고 있으면 25만원을 지불합니다.
+			// owner...
+			// 출발선 통과할 경우 월급 받습니다( 무조건 통과함 )
+			addMoney(playerToken, 200000);
+		},
+		18 : function(palyerToken) {
+			// 부산으로 가세요
+			// 부산을 상대방이 가지고 있으면 통행료 지불합니다. (60만원)
+			// 출발선 통과시 월급을 받습니다. (player.location == 36)
+			if(player[playerToken].location == 36) {
+				addMoney(palyerToken, 200000);
+				player[playerToken].location = 26;
+				// 부산을 상대방이 소유 했으면 if
+			}
+		},
+		19 : function(playerToken) {
+			// 각 플레이어에게 3만원을 받습니다.
+		},
+		20 : function(playerToken) {
+			// 장학금 10만원
+			addMoney(playerToken, 100000);
+		},
+    	21 : function(playerToken) {
+    		// 종합소득세
+    		// 각 건물별 세금 납부
+            // subMoney(playerToken, 호텔갯수*150000);
+			// subMoney(playerToken, 빌딩갯수*100000);
+			// subMoney(playerToken, 별장갯수*30000);
+		},
+    	22 : function(playerToken) {
+    		// 30만원을 은행에서 받습니다.
+    		addMoney(playerToken, 300000);
+    	},
+    	23 : function(playerToken) {
+    		// 서울로 가세요 location40
+    		// 서울을 상대방이 소유 했다면 -200만원
+    		player[playerToken].location = 40;
+    		// if
+    	},
+    	24 : function(playerToken) {
+    		// 당신의 부동산 중에서 가장 비싼 곳을 반액에 파세요
+    		// 건물이 있다면 건물도 반액으로 판매
+    		// 관광지 x
+    	},
+    	25 : function(playerToken) {
+    		// 우주여행 초청장
+    		if(player[playerToken] == 36) {
+    			addMoney(playerToken, 200000);
+    			player[playerToken] = 31;
+    		} else {
+    			player[playerToken] = 31;
+    		}
+    		// 다음턴에 우주여행이 되야함
+    	},
+    	26 : function(playerToken) {
+    		// 우대권 (1회 사용 후 소멸)
+    		player[playerToken].inventory = "exemp";
+    	},
+    	27 : function(playerToken) {
+    		// 세계 일주 초대권
+    		// 한바퀴 돌고 제자리
+    		// 사회복지지금을 지나가면 모아놓은 기부금 받음 location == 39
+    	},
+    	28 : function(playerToken) {
+    		// 뒤로 2칸
+    		if(player[playerToken].location == 3) {
+    			addMoney(playerToken, 200000); // 월급
+    		} else {
+    			movePlayer(playerToken, -2);
+    		}
+    		// if(player[playerToken].location == 13)==> 무인도로감
+    	},
+    	29 : function(playerToken) {
+    		// 사회복지지금 접수처로 가세요
+    		if(player[playerToken].location == 23 || player[playerToken].location == 36) {
+    			addMoney(playerToken, 200000); // 월급
+    			subMoney(playerToken, 150000); // 사회복지기금에 15만원 기부
+    			Welfare += 150000;
+    		}
+    	},
+   		30 : function(playerToken) {
+   			// 반액대매출
+   			// 당신의 부동산 중에서 가장 비싼 곳을 반액에 파세요
+    		// 건물이 있다면 건물도 반액으로 판매
+    		// 관광지 x
+   			
+   		}
+    	
+    }
+    
+    //카드 셔플
+	let goldKeyList =[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29] // 29
+	function shuffle(goldKeyList){
+		console.log(goldKeyList.length);
+		for(let j, x, i = goldKeyList.length; i; j = Math.floor(Math.random() * i), x = goldKeyList[--i], goldKeyList[i] = goldKeyList[j], goldKeyList[j] = x);
+		return goldKeyList;
+	};
+	let shuffleArr = shuffle(goldKeyList);
+	console.log(shuffleArr)
+    function drowKey(){// 카드 뽑을때
+    	var cardIndex = 0;
+    	goldKey[goldKeyList[cardIndex]];
+    	cardIndex++;
+    }
+	let showDisplay = function(){//표시갱신
+		$("#1p").html(player[1].location);//각 플레이어 위치 표시
+        $("#2p").html(player[2].location);
+        $("#3p").html(player[3].location);
+        $("#4p").html(player[4].location);
+        
+		$("#1Pmoney").html(player[1].money);//각 플레이어 돈 표시
+        $("#2Pmoney").html(player[2].money);
+        $("#3Pmoney").html(player[3].money);
+        $("#4Pmoney").html(player[4].money);
+        
+        $("#turn").html(playerToken);//차례표시
+        
+        //복지기금 표시
+        
+        // 황금카드 사용
+        // 1) 무인도 탈출시 탈출권 소유했을 경우
+		function escape(token) {
+        	if(player[token].iventory == "escape") {
+        		// confirm ("탈출권 사용 하시겠습니까?")
+        		// 사용 했으면 player[token].iventory == "none"
+        	} else {
+        		return;
+        	}
+        }
+	};
+	
+	$(document).ready(function() {
+		$("#throwDice").click(function() {
+			$("#startDice").hide();
+		    
+			let diceOne = 0;
+			let diceTwo = 0;
+			let diceNum = 0; // 주사위 두개 던져서 두개 합
+			
+			
+			diceOne =  Math.floor( (Math.random() * 6) + 1 );
+			diceTwo =  Math.floor( (Math.random() * 6) + 1 );
+			diceNum = Number(diceOne) + Number(diceTwo);
+			console.log("diceOne : " + diceOne);
+			console.log("diceTwo : " + diceTwo);
+			console.log("diceNum : " + diceNum);
+			$("#diceOne").html(diceOne);
+			$("#diceTwo").html(diceTwo);
+			
+			/* let beforeId = "#b" + player[playerToken].location;
+		    $(beforeId).innerHTML = ""; */
+			
+		    ////////////말 사라짐
+	          if(playerToken==1) {
+	             $('#player1').remove();
+	          }
+	          if(playerToken==2) {
+	             $('#player2').remove();
+	          }
+	          if(playerToken==3) {
+	             $('#player3').remove();
+	          }
+	          if(playerToken==4) {
+	             $('#player4').remove();
+	          }
+		    
+		    movePlayer(playerToken, diceNum);// 말을 이동시킵니다.
+		   
+		    let afterId = "#b" + player[playerToken].location;
+		    // 땅 밟았을떄 이벤트 발생
+		    if($(afterId).find(".player").text() == 0) {
+		    	landEvent(); 
+		    } 
+		    
+			// 말 출현
+			if(playerToken==1) {
+				 $(afterId).append("<button class='btn-danger' id ='player1'>aa</button>");
+	          }
+	          if(playerToken==2) {
+	        	  $(afterId).append("<button class='btn-primary' id ='player2'>bb</button>");
+	          }
+	          if(playerToken==3) {
+	        	  $(afterId).append("<button class='btn-seconday' id ='player3'>cc</button>");
+	          }
+	          if(playerToken==4) {
+	        	  $(afterId).append("<button class='btn-warning' id ='player4'>dd</button>");
+	          }
+		    
+		    changeTurn(!(diceOne==diceTwo));//더블이 아닐때 턴넘김
+		    
+		    $("#dice").text(diceNum);
+		    $("#point").val = player[playerToken].location;
+		    showDisplay();
+		}); 
+    });
+</script>
+</html>

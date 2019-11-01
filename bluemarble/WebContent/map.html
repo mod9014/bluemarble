@@ -352,10 +352,14 @@
 	
 	//황금카드 함수 30개
 	let goldKey = {
-		"1":function(){//병원비 지급 : 벌금 50000원
-				let imageId = 1;
-				subMoney(playerToken, 50000)
-				
+		"1":{
+				name : "베이징",
+				function(){//병원비 지급 : 벌금 50000원
+			
+					let imageId = 1;
+					subMoney(playerToken, 50000)
+					
+				}
 			},
 		"2":function(){
 			

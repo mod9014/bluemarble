@@ -90,51 +90,16 @@
 	var totalPlayer = 4;//게임할 플레이어 수
     var playerToken = 1;//턴 확인
     var Welfare = 0// 복지기금
-	function Players(){
+	var Players = function(){
         this.money = 2930000;// 플레이어 자금
         this.location = 0; //플레이어 위치
         this.isLoans = false; //대출 여부
         this.LoansValues = 0; //대출금(rush&cash)
         this.muindo = 0;//무인도일 경우 
         this.inventory = "none"; //사용할수있는 황금카드 소유여부 = 미보유 :(none)  우대(exemp), 무인도탈출(escape
-    	
+    	this.myLand = 0; // 건물 소유갯수
 	};
-    /*
-    let player = {
-        1:{
-			money : 2930000,// 플레이어 자금
-			location : 0, //플레이어 위치
-			isLoans : false, //대출 여부
-			inventory : "none" //사용할수있는 황금카드 소유여부 = 미보유 :(none)  우대(exemp), 무인도탈출(escape)
-		},
-        2:{
-			money : 2930000,// 플레이어 자금
-			location : 0, //플레이어 위치
-			isLoans : false, //대출 여부
-			inventory : "none" //사용할수있는 황금카드 소유여부 = 미보유 :(none)  우대(exemp), 무인도탈출(escape)
-		},
-        3:{
-			money : 2930000,// 플레이어 자금
-			location : 0, //플레이어 위치
-			isLoans : false, //대출 여부
-			inventory : "none" //사용할수있는 황금카드 소유여부 = 미보유 :(none)  우대(exemp), 무인도탈출(escape)
-		},
-        4:{
-			money : 2930000,// 플레이어 자금
-			location : 0, //플레이어 위치
-			isLoans : false, //대출 여부
-			inventory : "none" //사용할수있는 황금카드 소유여부 = 미보유 :(none)  우대(exemp), 무인도탈출(escape)
-		}
-        for(i=1;i<=4;i++){
-             :{
-			money : 2930000,// 플레이어 자금
-			location : 0, //플레이어 위치
-			isLoans : false, //대출 여부
-			inventory : "none" //사용할수있는 황금카드 소유여부 = 미보유 :(none)  우대(exemp), 무인도탈출(escape)
-		    },
-        }
-    };
-    */
+    
 	
     var player = new Array();
     for(i=1 ; i<=totalPlayer ; i++){//플레이어 객체생성
@@ -145,8 +110,8 @@
         let moveCoord = player[token].location;
 		if(player[token].muindo==0){
             moveCoord+=diceNum;
-            if(moveCoord>=44){
-			    moveCoord-=43;
+            if(moveCoord>40){
+			    moveCoord-=40;
 		    }
         }
 		
@@ -178,32 +143,7 @@
 	    각 건물가격
 	    건물 여부
     */
-	function Taipei(){
-    	const TAIPEI = 50000; //땅 가격
-    	const HOTEL = 250000; //땅의 호텔 가격
-    	const BUILDING = 150000; //땅의 빌딩 가격
-    	const VILLA1 = 50000; //땅의 빌라 가격
-    	const VILLA2 = 50000; //땅의 빌라 가격
-    	//let owner = 0; //소유한 플레이어 외부정의 해야함
-    	let fee = 4000; //통행료
-    	let isHotel = false;
-    	let isBuliding = false;
-    	let isVilla1 = false;
-    	let isVilla2 = false;
-    	if(isHotel || isBuliding || isVilla1 || isVilla2)
-    		fee=0;
-    	if(isHotel)
-    		fee+=HOTEL;
-    	if(isBuliding)
-    		fee+=BUILDING;
-    	if(isVilla1)
-    		fee+=VILLA1;
-    	if(isVilla2)
-    		fee+=VILLA2;
-    	return fee;
-    	//addMoney((소유자), fee);
-    	//subMoney(totalPlayer, fee);
-    }
+
   
     //황금카드 함수 30개
     let goldKey = {
@@ -223,9 +163,10 @@
     
     //카드 섞는다
     let goldKeyList = [1,2,3,4,5,,,,30];
+	var cardIndex = 0;
     function drowKey(){// 카드 뽑을때
-    	var cardIndex = 0;
-    	goldKey[goldKeyList[cardIndex]];
+    	let goldKeyFunction = goldKey[goldKeyList[cardIndex]];
+    	goldKeyFunction();
     	cardIndex++;
     }
 	let showDisplay = function(){//표시갱신
@@ -245,6 +186,7 @@
 	};
     
 	$(document).ready(function(){
+		$("#startDice").hide();
         showDisplay();
         $("#throwDice").click(function(){
             movePlayer(playerToken, 3);
