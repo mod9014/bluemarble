@@ -11,82 +11,14 @@
 </head>
 
 <body>
-
-<!------------  증서 구입 레이어  ----------- -->
-<div id="dim-layer1" class="dim-layer">
-    <div class="dimBg"></div>
-    <div id="buyLandLayer" class="pop-layer">
-        <div class="pop-container">
-            <div class="pop-conts">
-                <!--content //-->
-                <h3 align="center" id="title" class="ctxt mb20"><!-- 도시이름 --></h3>
-                <h4 align="center" ><span id="value"><!-- 가격 --></span>만원</h4>
-
-                <div class="btn-r">
-                    <a href="#" id="buy" class="btn-layerConfirm">구매</a>
-                    <a href="#" id="cancel" class="btn-layerClose">취소</a>
-                </div>
-                <!--// content-->
-            </div>
-        </div>
-    </div>
-    
-</div>
-<!------------  건물 건설 레이어 ----------- -->
-<div id="dim-layer2" class="dim-layer">
-	<div id="buildLayer" class="pop-layer">
-        <div class="pop-container">
-            <div class="pop-conts">
-                <!--content //-->
-                <h3 align="center" id="title" class="ctxt mb20"><!-- 도시이름 --></h3>
-                <form>
-                	<input type="checkbox" value="hotel">호텔
-                	<input type="checkbox" value="building">빌딩
-                	<input type="checkbox" value="villa1">별장
-                	<input type="checkbox" value="villa2">별장2채
-                </form>
-				
-                <div class="btn-r">
-                    <a href="#" id="buy" class="btn-layerConfirm">구매</a>
-                    <a href="#" id="cancel" class="btn-layerClose">취소</a>
-                </div>
-                <!--// content-->
-            </div>
-        </div>
-    </div>
-</div>
-
-<!------------  대출 레이어 ----------- -->
-<div id="dim-layer3" class="dim-layer">
-	<div id="buildLayer" class="pop-layer">
-        <div class="pop-container">
-            <div class="pop-conts">
-                <!--content //-->
-                <div id="content">
-                
-                </div>
-				
-                <div class="btn-r">
-                    <a href="#" id="buy" class="btn-layerConfirm">구매</a>
-                    <a href="#" id="cancel" class="btn-layerClose">취소</a>
-                </div>
-                <!--// content-->
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!------------  매각 레이어 ----------- -->
-
-<!------------  땅 정보 레이어 ----------- -->
-
-<!------------  골드카드 레이어 ----------- -->
-
+<div id ='popup'></div>
 <div style="height: 200px;"></div>
-<button id="taipei">타이페이</button>
+<button id="taipei">타이페이(구입)</button>
 <button id="taipeiBuild">타이페이(건설)</button>
-<button id="loan">타이페이</button>
+<button id="loan">대출</button>
+<button id="sale">매각</button>
+<button id="taipeiInfo">타이페이(정보)</button>
+<button id="goldKey">골드 카드</button>
 <script type="text/javascript">
 //--------------------------------------------
 /* $('.btn-example').click(function(){
@@ -96,6 +28,8 @@
     layer_popup($("#layer2"));
 }); */
 
+
+	$("#popup").load("/bluemarble/popup/popup.html");
 
 
 	let goldKey = {
@@ -128,7 +62,7 @@
 		//if(taipei.owner!=0){// 땅주인이 없으면
 		if(true){
 			//땅구매 팝업 표시
-			build_popup($("#buildLayer"));
+			build_popup($("#buildLayer"), "타이페이");
 		}else{//주인 있으면
 			//if(taipei.owner==playerToken){//자기땅이면
 			if(true){
@@ -137,11 +71,50 @@
 			}
 		}
 	});
-	$("#taipeiBuild").click(function(){
+	$("#loan").click(function(){
 		//if(taipei.owner!=0){// 땅주인이 없으면
 		if(true){
 			//땅구매 팝업 표시
-			build_popup($("#buildLayer"));
+			Loan_popup($("#loanLayer"));
+		}else{//주인 있으면
+			//if(taipei.owner==playerToken){//자기땅이면
+			if(true){
+			}else{//남의 땅이면
+				//통행료 납부 함수 
+			}
+		}
+	});
+	$("#sale").click(function(){
+		//if(taipei.owner!=0){// 땅주인이 없으면
+		if(true){
+			//땅구매 팝업 표시
+			Sale_popup($("#saleLayer"));
+		}else{//주인 있으면
+			//if(taipei.owner==playerToken){//자기땅이면
+			if(true){
+			}else{//남의 땅이면
+				//통행료 납부 함수 
+			}
+		}
+	});
+	$("#taipeiInfo").click(function(){
+		//if(taipei.owner!=0){// 땅주인이 없으면
+		if(true){
+			//땅구매 팝업 표시
+			Info_popup($("#informationLayer"), '타이페이');
+		}else{//주인 있으면
+			//if(taipei.owner==playerToken){//자기땅이면
+			if(true){
+			}else{//남의 땅이면
+				//통행료 납부 함수 
+			}
+		}
+	});
+	$("#goldKey").click(function(){
+		//if(taipei.owner!=0){// 땅주인이 없으면
+		if(true){
+			//땅구매 팝업 표시
+			Gold_popup($("#goldLayer"));
 		}else{//주인 있으면
 			//if(taipei.owner==playerToken){//자기땅이면
 			if(true){
@@ -195,7 +168,6 @@
     	   		return fare;
     	   	}
     	}
-   taipei.getFare();
 </script>
 </body>
 </html>
