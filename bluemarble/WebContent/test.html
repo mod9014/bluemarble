@@ -32,24 +32,11 @@
 	$("#popup").load("/bluemarble/popup/popup.html");
 
 
-	let goldKey = {
-   		1:function(){//병원비 지급 : 벌금 50000원
-   			alert("1e");
-   		},
-    	2:function(){
-   			alert("2e");
-    	},
-   		//.....
-   		30: function(){
-   			alert("30e");
-   			//
-   		}
-    }
 	$("#taipei").click(function(){
 		//if(taipei.owner!=0){// 땅주인이 없으면
 		if(true){
 			//땅구매 팝업 표시
-			buy_popup($("#buyLandLayer"), "타이페이", "8");
+			buy_popup("타이페이", "8");
 		}else{//주인 있으면
 			if(taipei.owner==playerToken){//자기땅이면
 				//건물 건설 팝업
@@ -62,7 +49,7 @@
 		//if(taipei.owner!=0){// 땅주인이 없으면
 		if(true){
 			//땅구매 팝업 표시
-			build_popup($("#buildLayer"), "타이페이");
+			build_popup( "타이페이");
 		}else{//주인 있으면
 			//if(taipei.owner==playerToken){//자기땅이면
 			if(true){
@@ -75,7 +62,7 @@
 		//if(taipei.owner!=0){// 땅주인이 없으면
 		if(true){
 			//땅구매 팝업 표시
-			Loan_popup($("#loanLayer"));
+			Loan_popup();
 		}else{//주인 있으면
 			//if(taipei.owner==playerToken){//자기땅이면
 			if(true){
@@ -88,7 +75,7 @@
 		//if(taipei.owner!=0){// 땅주인이 없으면
 		if(true){
 			//땅구매 팝업 표시
-			Sale_popup($("#saleLayer"));
+			Sale_popup();
 		}else{//주인 있으면
 			//if(taipei.owner==playerToken){//자기땅이면
 			if(true){
@@ -101,7 +88,7 @@
 		//if(taipei.owner!=0){// 땅주인이 없으면
 		if(true){
 			//땅구매 팝업 표시
-			Info_popup($("#informationLayer"), '타이페이');
+			Info_popup('타이페이');
 		}else{//주인 있으면
 			//if(taipei.owner==playerToken){//자기땅이면
 			if(true){
@@ -114,7 +101,7 @@
 		//if(taipei.owner!=0){// 땅주인이 없으면
 		if(true){
 			//땅구매 팝업 표시
-			Gold_popup($("#goldLayer"));
+			Gold_popup();
 		}else{//주인 있으면
 			//if(taipei.owner==playerToken){//자기땅이면
 			if(true){
