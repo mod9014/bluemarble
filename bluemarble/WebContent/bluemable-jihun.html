@@ -19,6 +19,11 @@
    border: none !important;
    
 }
+.no_border:hover {
+	box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.6);
+	background: rgba(0, 130, 150, 0.2);
+	border-radius: 15px;
+}
 .td_width {
 	width: 90px;
 }
@@ -26,15 +31,62 @@
    background: lightblue;
 }
 .board_edge {
-	width: 140px;
-	height: 145px;
+	width: 145px;
+}
+ #playerOne {
+	background: #fff;
+      border: 6px solid #ccc;
+      height: 100px;
+      margin: 20px;
+      padding: 20px;
+      width: 100px;
+      float: left;
+      margin-left: 300px;
+      po
+}
+#playerTwo {
+	background: #fff;
+      border: 6px solid #ccc;
+      height: 100px;
+      margin: 20px;
+      padding: 20px;
+      width: 100px;
+      float: right;
+      margin-right: 300px;
+}
+#playerThree {
+	background: #fff;
+      border: 6px solid #ccc;
+      height: 100px;
+      margin: 20px;
+      padding: 20px;
+      width: 100px;
+      float: left;
+      margin-left: 300px;
+}
+#playerFour {
+	background: #fff;
+      border: 6px solid #ccc;
+      height: 100px;
+      margin: 20px;
+      padding: 20px;
+      width: 100px;
+      float: right;
+      margin-right: 300px;
 }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/bluemarble/popup/popup.js"></script>
+<script src="/bluemarble/script/land.js"></script>
+<link rel="stylesheet" type="text/css" href="/bluemarble/popup/popup.css">
 </head>
 <body>
+<!-- <div id = "playerOne">One</div>
+<div id = "playerTwo">Two</div> -->
+
+<div id ='popup'></div>
    <div class="boaard_floor">
 
       <div class="container" align="center">
@@ -68,14 +120,15 @@
 	    </div>
 		<div>
 			<button id="throwDice">주사위 굴리기</button>
-		</div>
+		</div> 
 	
-	
+		<h3>부루마블</h3>
+		
          <div class="marble_board" align="center">
             <div
-               style="padding-left: 14px; padding-right: 18px; padding-top: 14px; height: 1145px">
+               style="padding-left: 30px; padding-right: 18px; padding-top: 26px; height: 1145px; size: 75%;">
                <table class="table">
-                  <tr height="148px">
+                  <tr height="143px">
                      <td class = "no_border board_edge">
                      	<div class = owner>0</div>
                         21<span id="b21"></span>
@@ -100,19 +153,19 @@
                      <div class = owner>0</div>
                         26<span id="b26"></span>
                      </td>
-                     <td class = "no_border td_width">
+                     <td class = "no_border" style = "width: 88px;">
                      <div class = owner>0</div>
                         27<span id="b27"></span>
                      </td>
-                     <td class = "no_border td_width">
+                     <td class = "no_border" style = "width: 85px; padding-right: none;">
                      <div class = owner>0</div>
                         28<span id="b28"></span>
                      </td>
-                     <td class = "no_border td_width">
+                     <td class = "no_border" style = "width: 85px;">
                      <div class = owner>0</div>
                         29<span id="b29"></span>
                      </td>
-                     <td class = "no_border td_width">
+                     <td class = "no_border" style = "width: 85px;">
                      <div class = owner>0</div>
                         30<span id="b30"></span>
                      </td>
@@ -121,179 +174,122 @@
                         31<span id="b31"></span>
                      </td>
                   </tr>
-                  <tr height="91px">
+                  
+                  <tr height="88px">
                      <td class = "no_border">
                      <div class = owner>0</div>
                         20<span id="b20"></span>
                      </td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
+                     <!-- 가운데 창 -->
+                     <td class="no_border" colspan="9" rowspan="9">
+                     	<!-- <button type = "button" id = "two">2인</button>
+                     	<button type = "button"  id = "three">3인</button>
+                     	<button type = "button"  id = "four">4인</button> -->
+                     </td>
                      <td class = "no_border">
                      <div class = owner>0</div>
                         32<span id="b32"></span>
                      </td>
                   </tr>
-                  <tr height="90px">
+                  
+                  <tr height="88px">
                      <td class = "no_border">
                      <div class = owner>0</div>
                         19<span id="b19"></span>
                      </td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
+                     
                      <td class = "no_border">
                      <div class = owner>0</div>
                         33<span id="b33"></span>
-                     </td>
+                     </td>              
                   </tr>
-                  <tr height="90px">
+                  
+                  <tr height="88px">
                      <td class = "no_border">
                      <div class = owner>0</div>
                         18<span id="b18"></span>
                      </td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
+                     
                      <td class = "no_border">
                      <div class = owner>0</div>
                         34<span id="b34"></span>
                      </td>
                   </tr>
-                  <tr height="90px">
+                  
+                  <tr height="88px">
                      <td class = "no_border">
                      <div class = owner>0</div>
                         17<span id="b17"></span>
                      </td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
+                     
                      <td class = "no_border">
                      <div class = owner>0</div>
                      35<span id="b35"></span>
                      </td>
                   </tr>
-                  <tr height="90px">
+                  
+                  <tr height="88px">
                      <td class = "no_border">
                      <div class = owner>0</div>
                         16<span id="b16"></span>
                      </td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
+                     
                      <td class = "no_border">
                      <div class = owner>0</div>
                      36<span id="b36"></span>
                      </td>
                   </tr>
-                  <tr height="90px">
+                  
+                  <tr height="88px">
                      <td class = "no_border">
                      <div class = owner>0</div>
                         15<span id="b15"></span>
                      </td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
+                     
                      <td class = "no_border">
                      <div class = owner>0</div>
                      37<span id="b37"></span>
                      </td>
                   </tr>
-                  <tr height="90px">
+                  
+                  <tr height="88px">
                      <td class = "no_border">
                      <div class = owner>0</div>
                         14<span id="b14"></span>
                      </td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
+                     
                      <td class = "no_border">
                      <div class = owner>0</div>
                      38<span id="b38"></span>
                      </td>
                   </tr>
-                  <tr height="90px">
+                  
+                  <tr height="88px">
                      <td class = "no_border">
                      <div class = owner>0</div>
                         13<span id="b13"></span>
                      </td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
+                     
                      <td class = "no_border">
                      <div class = owner>0</div>
                      39<span id="b39"></span>
                      </td>
                   </tr>
-                  <tr height="90px">
+                  
+                  <tr height="88px">
                      <td class = "no_border">
                      <div class = owner>0</div>
                         12<span id="b12"></span>
                      </td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
-                     <td class="no_border"></td>
+                     
                      <td class = "no_border">
                      <div class = owner>0</div>
                      40<span id="b40"></span>
                      </td>
                   </tr>
+                  
                   <tr height="148px">
-                     <td class = "no_border board_edge">
+                     <td class = "no_border">
                      <div class = owner>0</div>
                         11<span id="b11"></span>
                      </td>
@@ -331,11 +327,11 @@
                      </td>
                      <td width="89px" class = "no_border">
                      <div class = owner>0</div>
-                        2<span id="b2"></span>
+                        <span id="b2"></span>
                      </td>
-                     <td class = "no_border board_edge">
+                     <td class = "no_border">
                      <div class = owner>0</div>
-                        1<span id="b1" ></span>
+                        <span id="b1" >출발</span>
                         <span id="b1">   
 							<button class="btn-danger" id ="player1">aa</button>
 							<button class="btn-primary" id ="player2">bb</button>
@@ -349,13 +345,21 @@
          </div>
       </div>
    </div>
+		<!-- <div id = "playerThree">Three
+		</div>
+		<div id = "playerFour">Four
+		</div> -->
 </body>
+<!-- <script src = "/blueMarble/land/land.js"></script> -->
 
+<script src="/bluemarble/script/landState.js"></script>
 <script>
+	$("#popup").load("/bluemarble/popup/popup.html");
 	
 	var totalPlayer = 4; // 게임할 플레이어 수
     var playerToken = 1; // 턴 확인
     var Welfare = 0 // 복지기금
+    var totalSite = 39; // 출발선을 제외한 총 부동산 부지 갯수
     
 	function Players() {
         this.money = 2930000; // 플레이어 자금
@@ -364,45 +368,16 @@
         this.LoansValues = 0; // 대출금(rush&cash)
         this.muindo = 0; // 무인도일 경우 
         this.inventory = "none"; // 사용할수있는 황금카드 소유여부 = 미보유 :(none)  우대(exemp), 무인도탈출(escape)
-    	
 	};
 	
-    /*
-    let player = {
-        1:{
-			money : 2930000,// 플레이어 자금
-			location : 0, //플레이어 위치
-			isLoans : false, //대출 여부
-			inventory : "none" //사용할수있는 황금카드 소유여부 = 미보유 :(none)  우대(exemp), 무인도탈출(escape)
-		},
-        2:{
-			money : 2930000,// 플레이어 자금
-			location : 0, //플레이어 위치
-			isLoans : false, //대출 여부
-			inventory : "none" //사용할수있는 황금카드 소유여부 = 미보유 :(none)  우대(exemp), 무인도탈출(escape)
-		},
-        3:{
-			money : 2930000,// 플레이어 자금
-			location : 0, //플레이어 위치
-			isLoans : false, //대출 여부
-			inventory : "none" //사용할수있는 황금카드 소유여부 = 미보유 :(none)  우대(exemp), 무인도탈출(escape)
-		},
-        4:{
-			money : 2930000,// 플레이어 자금
-			location : 0, //플레이어 위치
-			isLoans : false, //대출 여부
-			inventory : "none" //사용할수있는 황금카드 소유여부 = 미보유 :(none)  우대(exemp), 무인도탈출(escape)
-		}
-        for(i=1;i<=4;i++){
-             :{
-			money : 2930000,// 플레이어 자금
-			location : 0, //플레이어 위치
-			isLoans : false, //대출 여부
-			inventory : "none" //사용할수있는 황금카드 소유여부 = 미보유 :(none)  우대(exemp), 무인도탈출(escape)
-		    },
-        }
-    };
-    */
+    let landList = new Array();
+	for(let i = 1; i<39; i++) {
+		landList[i] = i;
+	}
+	console.log(landList.length);
+
+	
+	
 	
     var player = new Array();
     for(i=1; i<=totalPlayer; i++){ //플레이어 객체생성
@@ -413,8 +388,8 @@
         let moveCoord = player[token].location;
 		if(player[token].muindo==0){
             moveCoord += diceNum;
-            if(moveCoord>40){
-			    moveCoord-=40;
+            if(moveCoord > 40){
+			    moveCoord -= 40;
 		    }
         }
         player[token].location = moveCoord;
@@ -428,60 +403,34 @@
 	}
 	
 	
-    var changeTurn = function(isNext){//턴변경해준다
+    let changeTurn = function(isNext){//턴변경해준다
         if(isNext){
             playerToken++;
         }
         if(playerToken>totalPlayer) {
             playerToken-=totalPlayer;
         }
+        return false;
     };
-	let map = [ 
-		//각 칸에 실행될 함수 이름 저장
-        //칸 이동후 해당
-	];
-	var addMoney = function(token, money){//돈 추가 함수
+	let addMoney = function(token, money){//돈 추가 함수
         player[token].money+=money;
+		console.log(token+"의 돈 "+money+"추가");
+        return false;
     }
     
-    var subMoney = function(token, money){//돈 소비 함수 token:playerToken money
-        player[token].money+=money;
+    let subMoney = function(token, money){//돈 소비 함수 token:playerToken money
+        if(player[token].money-money>=0){
+        	player[token].money-=money;
+    		console.log(token+"의 돈 "+money+"감소");
+            return false;
+        }else{
+        	SelectLoanSale_popup();
+            return false;
+        }
+    
     }
     
-    /*
-	    땅 소유자
-	    땅 가격
-	    각 건물가격
-	    건물 여부
-    */
-    
-	function Taipei() {
-    	const TAIPEI = 50000; //땅 가격
-    	const HOTEL = 250000; //땅의 호텔 가격
-    	const BUILDING = 150000; //땅의 빌딩 가격
-    	const VILLA1 = 50000; //땅의 빌라 가격
-    	const VILLA2 = 50000; //땅의 빌라 가격
-    	//let owner = 0; //소유한 플레이어 외부정의 해야함
-    	let fee = 4000; //통행료
-    	let isHotel = false;
-    	let isBuliding = false;
-    	let isVilla1 = false;
-    	let isVilla2 = false;
-    	if(isHotel || isBuliding || isVilla1 || isVilla2)
-    		fee=0;
-    	if(isHotel)
-    		fee+=HOTEL;
-    	if(isBuliding)
-    		fee+=BUILDING;
-    	if(isVilla1)
-    		fee+=VILLA1;
-    	if(isVilla2)
-    		fee+=VILLA2;
-    	return fee;
-    	//addMoney((소유자), fee);
-    	//subMoney(totalPlayer, fee);
-    }
-  
+      
     //황금카드 함수 30개
     let goldKey = {
    		1 : function(playerToken) {
@@ -688,9 +637,11 @@
 	};
 	let shuffleArr = shuffle(goldKeyList);
 	console.log(shuffleArr)
+	
     function drowKey(){// 카드 뽑을때
     	var cardIndex = 0;
-    	goldKey[goldKeyList[cardIndex]];
+    	let key = goldKey[goldKeyList[cardIndex]];
+    	key(playerToken);
     	cardIndex++;
     }
 	let showDisplay = function(){//표시갱신
@@ -719,11 +670,27 @@
         	}
         }
 	};
-	
 	$(document).ready(function() {
+		$("#b1").hide();
+		console.log("totalPlayer : ", totalPlayer);
+		/* $("#two").click(function () {
+			totalPlayer = 2;
+			console.log("totalPlayer : ", totalPlayer);
+		});
+		$("#three").click(function () {
+			totalPlayer = 3;	
+			console.log("totalPlayer : ", totalPlayer);
+		});
+		$("#four").click(function () {
+			totalPlayer = 4;
+			console.log("totalPlayer : ", totalPlayer);
+		}); */
+		
+		
+		
+		
 		$("#throwDice").click(function() {
 			$("#startDice").hide();
-		    
 			let diceOne = 0;
 			let diceTwo = 0;
 			let diceNum = 0; // 주사위 두개 던져서 두개 합
@@ -738,8 +705,8 @@
 			$("#diceOne").html(diceOne);
 			$("#diceTwo").html(diceTwo);
 			
-			/* let beforeId = "#b" + player[playerToken].location;
-		    $(beforeId).innerHTML = ""; */
+			let beforeId = "#b" + player[playerToken].location;
+		    $(beforeId).innerHTML = "";
 			
 		    ////////////말 사라짐
 	          if(playerToken==1) {
@@ -758,10 +725,6 @@
 		    movePlayer(playerToken, diceNum);// 말을 이동시킵니다.
 		   
 		    let afterId = "#b" + player[playerToken].location;
-		    // 땅 밟았을떄 이벤트 발생
-		    if($(afterId).find(".player").text() == 0) {
-		    	landEvent(); 
-		    } 
 		    
 			// 말 출현
 			if(playerToken==1) {
@@ -776,9 +739,54 @@
 	          if(playerToken==4) {
 	        	  $(afterId).append("<button class='btn-warning' id ='player4'>dd</button>");
 	          }
+		    // 땅 밟았을떄 이벤트 발생
 		    
-		    changeTurn(!(diceOne==diceTwo));//더블이 아닐때 턴넘김
+		    let loca = player[playerToken].location;
+		    console.log(state[loca-1].nameKr);
+		    if(state[loca-1].owner>=0){//증서 땅일경우
+			  	if(state[loca-1].owner==0){// 땅주인이 없으면
+					//땅구매 팝업 표시
+				    buy_popup(playerToken, state[loca-1])
+				    	
+				
+				}else{//주인 있으면
+					if(owner[loca]==playerToken){//자기땅이면
+						//건물 건설 팝업
+						build_popup(siteList[loca-1])
+					}else{//남의 땅이면
+						//통행료 납부 함수 
+						let fare = site[player[playerToken].location].getFare();
+						subMoney(playerToken, fare);
+						addMoney(owner[loca], fare);
+					}
+				}
+		    }else {//관광지, 골카, 사회기금, 우주여행, 무인도
+		    	Gold_popup();
+		    }
+	    	changeTurn(!(diceOne==diceTwo));
+		    /* 	
+		    if(goldKey){
+		    	
+		    }else if(관광지){
+		    	if(owner[token]==0){// 땅주인이 없으면
+					//땅구매 팝업 표시
+					buy_popup("타이페이", "8");
+				}else{//주인 있으면
+					//통행료
+				}
+		    }else if(무인도){
+		    	player[playerToken].muindo=3;
+		    }else if(사회기금){
+				subMoney(playerToken, 150000); // 사회복지기금에 15만원 기부
+				Welfare += 150000;
+		    }else if(우주여행){
+		    	//우주여행
+		    } */
 		    
+		    //더블이 아닐때 턴넘김
+		    $("span").change(function(){
+		    	alert(this);
+		    });
 		    $("#dice").text(diceNum);
 		    $("#point").val = player[playerToken].location;
 		    showDisplay();
